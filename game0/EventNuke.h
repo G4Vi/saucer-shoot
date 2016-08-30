@@ -1,11 +1,17 @@
 #pragma once
-#include <string>
+//EventNuke.h
+
+//Engine includes
 #include "Event.h"
+
+//std includes
+#include <string>
+
 
 const std::string NUKE_EVENT = "nuke";
 
-class EventNuke : public df::Event {
-
+class EventNuke : public df::Event
+{
 public:
 	EventNuke();
 };

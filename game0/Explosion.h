@@ -1,7 +1,11 @@
 #pragma once
+//Explosion.h
+
+//Engine include
 #include "Object.h"
 
-class Explosion : public df::Object {
+class Explosion : public df::Object
+{
 
 private:
 	int time_to_live;

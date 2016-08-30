@@ -1,14 +1,20 @@
+//Saucer.cpp
+
+//game includes
 #include "Saucer.h"
 #include "Explosion.h"
 #include "EventNuke.h"
 #include "Points.h"
 
+//engine includes
 #include "LogManager.h"
 #include "WorldManager.h"
 #include "ResourceManager.h"
 #include "EventView.h"
 
+//std includes
 #include <stdlib.h> //rand
+
 int Saucer::eventHandler(const df::Event * p_e)
 {
     if (p_e->getType() == df::OUT_EVENT)
@@ -33,7 +39,8 @@ int Saucer::eventHandler(const df::Event * p_e)
     return 0;
 }
 
-void Saucer::out() {
+void Saucer::out()
+{
     if (getPosition().getX() >= 0)
         return;
 
@@ -41,22 +48,24 @@ void Saucer::out() {
     new Saucer;
 }
 
-void Saucer::moveToStart() {
+void Saucer::moveToStart()
+{
     df::WorldManager &world_manager = df::WorldManager::getInstance();
     df::Vector temp_pos;
 
     float world_horiz = world_manager.getBoundary().getHorizontal();
     float world_vert = world_manager.getBoundary().getVertical();
 
-    // x is off right side of window
+    // x is off right 
     temp_pos.setX(world_horiz + rand() % (int)world_horiz + 3.0f);
 
-    // y is in vertical range
+    // vertical range
     temp_pos.setY(rand() % (int)(world_vert - 4) + 4.0f);
 
     // If collision, move right slightly until empty space.
     df::ObjectList collision_list = world_manager.isCollision(this, temp_pos);
-    while (!collision_list.isEmpty()) {
+    while (!collision_list.isEmpty())
+    {
         temp_pos.setX(temp_pos.getX() + 1);
         collision_list = world_manager.isCollision(this, temp_pos);
     }
@@ -64,19 +73,20 @@ void Saucer::moveToStart() {
     world_manager.moveObject(this, temp_pos);
 }
 
-Saucer::Saucer() {
-    // Dragonfly managers needed for this method.
+Saucer::Saucer()
+{  
     df::LogManager &log_manager = df::LogManager::getInstance();
-    df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
-    //df::WorldManager &world_manager = df::WorldManager::getInstance();
+    df::ResourceManager &resource_manager = df::ResourceManager::getInstance();   
 
-    // Setup "saucer" sprite.
+    // get saucer sprite.
     df::Sprite *p_temp_sprite = resource_manager.getSprite("saucer");
-    if (!p_temp_sprite) {
+    if (!p_temp_sprite)
+    {
         log_manager.writeLog("Saucer::Saucer(): Warning! Sprite '%s' not found",
             "saucer");
     }
-    else {
+    else
+    {
         setSprite(p_temp_sprite);
         setSpriteSlowdown(4);
     }
@@ -89,14 +99,8 @@ Saucer::Saucer() {
     // Set speed in horizontal direction.
     setVelocity(df::Vector(-0.25, 0)); // 1 space left every 4 frames
 
+    //randomize start
     moveToStart();
-
-    // Set starting location in the middle of window.
-  /*  int world_horiz = (int)world_manager.getBoundary().getHorizontal();
-    int world_vert = (int)world_manager.getBoundary().getVertical();
-    df::Vector p(world_horiz / 2, world_vert / 2);
-    setPosition(p);*/
-
 
 }
 

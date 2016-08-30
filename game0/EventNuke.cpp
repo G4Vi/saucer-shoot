@@ -1,5 +1,9 @@
+//EventNuke.cpp
+
+//Game includes
 #include "EventNuke.h"
 
-EventNuke::EventNuke() {
+EventNuke::EventNuke()
+{
 	setType(NUKE_EVENT);
 };

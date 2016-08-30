@@ -1,9 +1,13 @@
 #pragma once
+//GameStart.h
+
+//Engine includes
 #include "ViewObject.h"
 #include "EventKeyboard.h"
 #include "Music.h"
 
-class GameStart : public df::ViewObject {
+class GameStart : public df::ViewObject
+{
 
 private:
 	void start();

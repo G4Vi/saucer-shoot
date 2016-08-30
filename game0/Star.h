@@ -1,10 +1,13 @@
 #pragma once
+//Star.h
 
+//Engine includes
 #include "Object.h"
 
-#define STAR_CHAR '.'
+const char STAR_CHAR = '.';
 
-class Star : public df::Object {
+class Star : public df::Object
+{
 
 private:
 	void out();

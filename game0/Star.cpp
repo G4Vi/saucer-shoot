@@ -1,5 +1,9 @@
+//Star.cpp
+
+//Game includes
 #include "Star.h"
 
+//engine includes
 #include "GraphicsManager.h"
 #include "WorldManager.h"
 #include "EventOut.h"
@@ -17,12 +21,15 @@ Star::Star()
 	setPosition(p);
 }
 
-void Star::draw() {
+void Star::draw()
+{
 	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
 	graphics_manager.drawCh(getPosition(), STAR_CHAR, df::WHITE);
 }
 
-void Star::out() {
+//offscreen
+void Star::out()
+{
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
 	df::Vector p((float)(world_manager.getBoundary().getHorizontal() + rand() % 20),
 		(float)(rand() % (int)world_manager.getBoundary().getVertical()));

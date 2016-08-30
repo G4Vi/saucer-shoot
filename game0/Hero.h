@@ -1,10 +1,17 @@
 #pragma once
+//Hero.h
+
+//Game includes
+#include "Reticle.h"
+
+//Engine includes
 #include "Object.h"
 #include "EventKeyboard.h"
 #include "EventMouse.h"
 
-#include "Reticle.h"
-class Hero : public df::Object {
+
+class Hero : public df::Object
+{
 
 private:
 	void kbd(const df::EventKeyboard *p_keyboard_event);

@@ -1,18 +1,20 @@
+//Explosion.cpp
+
+//Game includes
 #include "Explosion.h"
 
+//Engine includes
 #include "EventStep.h"
 #include "WorldManager.h"
 #include "LogManager.h"
 #include "ResourceManager.h"
 
 Explosion::Explosion()
-{
-	// Dragonfly managers needed for this method.
+{	
 	df::LogManager &log_manager = df::LogManager::getInstance();
-	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
-	//df::WorldManager &world_manager = df::WorldManager::getInstance();
+	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();	
 
-	// Setup "saucer" sprite.
+	// assign explosion sprite
 	df::Sprite *p_temp_sprite = resource_manager.getSprite("explosion");
 	if (!p_temp_sprite) 
 	{
@@ -34,7 +36,8 @@ Explosion::Explosion()
 }
 int Explosion::eventHandler(const df::Event * p_e)
 {
-	if (p_e->getType() == df::STEP_EVENT) {
+	if (p_e->getType() == df::STEP_EVENT)
+	{
 		step();
 		return 1;
 	}
@@ -45,7 +48,8 @@ int Explosion::eventHandler(const df::Event * p_e)
 void Explosion::step()
 {
 	time_to_live--;
-	if (time_to_live <= 0) {
+	if (time_to_live <= 0)
+	{
 		df::WorldManager &world_manager = df::WorldManager::getInstance();
 		world_manager.markForDelete(this);
 	}

@@ -1,8 +1,13 @@
 #pragma once
+//Saucer.h
+
+//Engine includes
 #include "Object.h"
 #include "EventOut.h"
 #include "EventCollision.h"
-class Saucer : public df::Object {
+
+class Saucer : public df::Object
+{
 private:	
 	void out();
 	void moveToStart();

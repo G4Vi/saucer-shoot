@@ -1,9 +1,13 @@
 #pragma once
+//Recticle.h
+
+//Engine includes
 #include "Object.h"
 
-#define RETICLE_CHAR '+'
+const char RETICLE_CHAR = '+';
 
-class Reticle : public df::Object {
+class Reticle : public df::Object
+{
 
 public:
 	Reticle();

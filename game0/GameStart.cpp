@@ -1,11 +1,15 @@
-#include "GameStart.h"
-#include "LogManager.h"
-#include "ResourceManager.h"
-#include "GameManager.h"
+//GameStart.cpp
 
+//Game includes
 #include "Saucer.h"
 #include "Hero.h"
 #include "Points.h"
+#include "GameStart.h"
+
+//Engine includes
+#include "LogManager.h"
+#include "ResourceManager.h"
+#include "GameManager.h"
 
 GameStart::GameStart()
 {
@@ -15,24 +19,37 @@ GameStart::GameStart()
 	//df::WorldManager &world_manager = df::WorldManager::getInstance();
 
 	df::Sprite *p_temp_sprite = resource_manager.getSprite("gamestart");
-	if (!p_temp_sprite) {
+	if (!p_temp_sprite)
+	{
 		log_manager.writeLog("GameStart::GameStart(): Warning! Sprite '%s' not found",
 			"gamestart");
 	}
 	else
 	{
-		setSprite(p_temp_sprite);		
+		setSprite(p_temp_sprite);
 		setSpriteSlowdown(15);
-		setType("GameStart");
-		
+	}
+	
+	setType("GameStart");
+	setLocation(df::CENTER_CENTER);
+   
+	registerInterest(df::KEYBOARD_EVENT);
 
-		setLocation(df::CENTER_CENTER);
+	p_music = df::ResourceManager::getInstance().getMusic("start music");
 
-		registerInterest(df::KEYBOARD_EVENT);
-
-		p_music = df::ResourceManager::getInstance().getMusic("start music");
+	if (!p_music)
+	{
+		log_manager.writeLog("GameStart::GameStart(): Warning! Music '%s' not found",
+			"start music");
+	}
+	else
+	{
 		playMusic();
 	}
+	
+
+		
+	
 
 }
 
@@ -40,7 +57,8 @@ void GameStart::kbd(const df::EventKeyboard *p_keyboard_event)
 {
 	df::GameManager &game_manager = df::GameManager::getInstance();
 
-	switch (p_keyboard_event->getKey()) {
+	switch (p_keyboard_event->getKey())
+	{
 	case df::Keyboard::P: 			// play
 		start();
 		break;
@@ -49,10 +67,12 @@ void GameStart::kbd(const df::EventKeyboard *p_keyboard_event)
 		break;
 	default:
 		break;
+
 	}
 }
 
-int GameStart::eventHandler(const df::Event *p_e) {
+int GameStart::eventHandler(const df::Event *p_e)
+{
 	if (p_e->getType() == df::KEYBOARD_EVENT)
 	{
 		const df::EventKeyboard *p_keyboard_event =

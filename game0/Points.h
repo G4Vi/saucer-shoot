@@ -1,10 +1,14 @@
 #pragma once
+//Points.h
+
+//Engine includes
 #include "ViewObject.h"
 #include "Event.h"
 
-#define POINTS_STRING "Points"
+extern const char* POINTS_STRING; //defined in Points.cpp
 
-class Points : public df::ViewObject {
+class Points : public df::ViewObject
+{
 
 public:
 	Points();

@@ -1,8 +1,12 @@
 #pragma once
+//Bullet.h
+
+//Engine includes
 #include "Object.h"
 #include "EventCollision.h"
-class Bullet : public df::Object {
 
+class Bullet : public df::Object
+{
 private:
 	void out();
 	void hit(const df::EventCollision *p_collision_event);
