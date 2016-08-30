@@ -1,43 +1,24 @@
 SAUCER SHOOT
-Mark Claypool (WPI)
-2016
+By Gavin Hayes gahayes@wpi.edu
+IMGD3000 A16
 
-Saucer Shoot game from Dragonfly tutorial.
+Saucer Shoot game from Dragonfly tutorial with additions.
 
-Tutorial available online:
+Developed in Windows VS2015. Use the project in the vs-2015 directory.
+To build in VS, press F7 to build and F5 to run. dragonfly and
+SFML-2.4 must exist in the directory above gameTutorial. 
 
- http://dragonfly.wpi.edu/tutorial/index.html
+Code structure is almost the same as the tutorial, but all "Get" calls
+are compared to be vald before using the result. Game starts in game.cpp, after initialization starts a splash screen (main menu screen) from game start. If the game is started a Hero is generated in Hero.cpp. 
+The Hero is controlled in Hero.cpp by listening to keyboard events. If the Hero died, GameOver splash screen is 
+played before reverting back to GameStart.
 
-And in book:
+See GAME.txt for notes on how the project was expanded. 
 
- Mark Claypool. Dragonfly - Program a Game Engine from Scratch,
- Interactive Media and Game Development, Worcester Polytechnic
- Institute, 2016. Online at: http://dragonfly.wpi.edu/book/
+VS project includes references to universal CRT runtime on Windows 7
+since it did not correctly include that when installing VS2015 on Windows 7.
+This should not affect building if UCRT is properly connected with VS. 
 
---------------------------------------------------------------------
+Makefile is the same as the one from game0 in the tutorial. With additions
+of the other files this project is buildable on linux. 
 
-To build:
-
-0) Setup development environment for Windows, Linux or MacOS.
-See http://dragonfly.wpi.edu/engine/index.html#setup for details.
-
-1) Build, as appropriate for the platform (e.g., "make" on Linux or
-Mac, F7 on Windows from Visual Studio).
-
-2) Run game, as appropriate for the platform (e.g., "./game" on
-Linux or Mac, F5 on Windows from Visual Studio)
-
---------------------------------------------------------------------
-
-Directories:
-
-sounds/ - contains the sound files used in Saucer shoot
-sprites/ - contains the sprite files used in Saucer shoot
-vs-2015/ - contains Visual Studio solution files (Microsoft Windows)
-
---------------------------------------------------------------------
-
-Happy shooting!
-
--- Mark
-claypool@cs.wpi.edu
