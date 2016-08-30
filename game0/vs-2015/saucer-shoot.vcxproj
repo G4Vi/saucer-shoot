@@ -155,9 +155,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Bullet.cpp" />
+    <ClCompile Include="..\EventNuke.cpp" />
+    <ClCompile Include="..\Explosion.cpp" />
+    <ClCompile Include="..\game.cpp" />
+    <ClCompile Include="..\GameOver.cpp" />
+    <ClCompile Include="..\GameStart.cpp" />
+    <ClCompile Include="..\Hero.cpp" />
+    <ClCompile Include="..\Points.cpp" />
+    <ClCompile Include="..\Reticle.cpp" />
+    <ClCompile Include="..\Saucer.cpp" />
+    <ClCompile Include="..\Star.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\game.cpp" />
+    <ClInclude Include="..\Bullet.h" />
+    <ClInclude Include="..\EventNuke.h" />
+    <ClInclude Include="..\Explosion.h" />
+    <ClInclude Include="..\GameOver.h" />
+    <ClInclude Include="..\GameStart.h" />
+    <ClInclude Include="..\Hero.h" />
+    <ClInclude Include="..\Points.h" />
+    <ClInclude Include="..\Reticle.h" />
+    <ClInclude Include="..\Saucer.h" />
+    <ClInclude Include="..\Star.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
