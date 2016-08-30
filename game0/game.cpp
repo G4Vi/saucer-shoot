@@ -7,6 +7,7 @@
 #include "LogManager.h"
 #include "ResourceManager.h"
 #include "Color.h"
+#include "Pause.h"
 
 //Game includes
 #include "Saucer.h"
@@ -21,7 +22,7 @@ void populateWorld(void)
     for (int i = 0; i<16; i++)
         new Star;
 
-	new GameStart();
+    new GameStart();
 }
 
 void loadResources(void)
@@ -39,9 +40,15 @@ void loadResources(void)
 
     resource_manager.loadSprite("sprites/explosion-spr.txt", "explosion");
 
-	resource_manager.loadSprite("sprites/gameover-spr.txt", "gameover");
+    resource_manager.loadSprite("sprites/gameover-spr.txt", "gameover");
 
-	resource_manager.loadSprite("sprites/gamestart-spr.txt", "gamestart");
+    resource_manager.loadSprite("sprites/gamestart-spr.txt", "gamestart");
+
+    resource_manager.loadSound("sounds/fire.wav", "fire");
+    resource_manager.loadSound("sounds/explode.wav", "explode");
+    resource_manager.loadSound("sounds/nuke.wav", "nuke");
+    resource_manager.loadSound("sounds/game-over.wav", "game over");
+    resource_manager.loadMusic("sounds/start-music.wav", "start music");
 }
 
 int main(int argc, char *argv[]) {
@@ -67,6 +74,9 @@ int main(int argc, char *argv[]) {
 
   //add entities to world
   populateWorld();
+
+  //pausing
+  new df::Pause(df::Keyboard::F10);
 
   //start world
   game_manager.run();

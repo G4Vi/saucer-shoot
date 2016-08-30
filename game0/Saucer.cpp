@@ -52,7 +52,7 @@ void Saucer::moveToStart() {
     temp_pos.setX(world_horiz + rand() % (int)world_horiz + 3.0f);
 
     // y is in vertical range
-    temp_pos.setY(rand() % (int)(world_vert - 1) + 1.0f);
+    temp_pos.setY(rand() % (int)(world_vert - 4) + 4.0f);
 
     // If collision, move right slightly until empty space.
     df::ObjectList collision_list = world_manager.isCollision(this, temp_pos);
@@ -102,9 +102,9 @@ Saucer::Saucer() {
 
 Saucer::~Saucer()
 {
-	df::EventView ev(POINTS_STRING, 10, true);
-	df::WorldManager &world_manager = df::WorldManager::getInstance();
-	world_manager.onEvent(&ev);
+    df::EventView ev(POINTS_STRING, 10, true);
+    df::WorldManager &world_manager = df::WorldManager::getInstance();
+    world_manager.onEvent(&ev);
 }
 
 void Saucer::hit(const df::EventCollision *p_c) 
@@ -118,7 +118,7 @@ void Saucer::hit(const df::EventCollision *p_c)
     {
         // Create an explosion.
         Explosion *p_explosion = new Explosion;
-        p_explosion->setPosition(this->getPosition());
+        p_explosion->setPosition(this->getPosition());		
 
         // Saucers appear stay around perpetually.
         new Saucer;
@@ -131,7 +131,9 @@ void Saucer::hit(const df::EventCollision *p_c)
             world_manager.markForDelete(p_c->getObject2());
     }
     
-
+    //sound
+    df::Sound *p_sound = df::ResourceManager::getInstance().getSound("explode");
+    p_sound->play();
 
 }
 

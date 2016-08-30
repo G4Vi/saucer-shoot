@@ -123,7 +123,7 @@ void Hero::move(int dy) {
     df::Vector new_pos(getPosition().getX(), getPosition().getY() + dy);
     df::WorldManager &world_manager = df::WorldManager::getInstance();
     if ((new_pos.getY() > 3) &&
-        (new_pos.getY() < world_manager.getBoundary().getVertical() - 1))
+        (new_pos.getY() < world_manager.getBoundary().getVertical()-1))
         world_manager.moveObject(this, new_pos);
 }
 
@@ -134,6 +134,10 @@ void Hero::fire(df::Vector target)
     p->setVelocity(df::Vector(p->getVelocity().getX(),
         ((float)(target.getY() - getPosition().getY())) /
         ((float)(target.getX() - getPosition().getX()))));
+
+    //sound
+    df::Sound *p_sound = df::ResourceManager::getInstance().getSound("fire");
+    p_sound->play();
 }
 
 void Hero::nuke()
@@ -148,6 +152,9 @@ void Hero::nuke()
 
     df::EventView ev("Nukes", -1, true);
     world_manager.onEvent(&ev);
+
+    df::Sound *p_sound = df::ResourceManager::getInstance().getSound("nuke");
+    p_sound->play();
 }
 
 // Decrease rate restriction counters.

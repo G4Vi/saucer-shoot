@@ -1,5 +1,8 @@
-21:54:57    0 ****************************************************
-21:54:57    0 ** Dragonfly version 4.2 **
-21:54:59   36 GameManager::run(): Can't keep up! frame_time 33 ms, split 38 ms
-21:54:59    1 ** Game stopped **
-21:54:59    1 ****************************************************
+12:39:41    0 ****************************************************
+12:39:41    0 ** Dragonfly version 4.2 **
+12:39:42    0 GameManager::run(): Can't keep up! frame_time 33 ms, split 100 ms
+12:39:43   38 GameManager::run(): Can't keep up! frame_time 33 ms, split 114 ms
+12:39:45   90 Pause::Pause(): Pause enabled.  Press any other key to resume.
+12:39:45    0 GameManager::run(): Can't keep up! frame_time 33 ms, split 45 ms
+12:40:02  501 ** Game stopped **
+12:40:02  501 ****************************************************

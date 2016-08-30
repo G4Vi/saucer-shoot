@@ -1,4 +1,7 @@
 #include "GameOver.h"
+#include "GameStart.h"
+
+
 #include "ResourceManager.h"
 #include "LogManager.h"
 #include "WorldManager.h"
@@ -29,6 +32,9 @@ GameOver::GameOver()
 		setLocation(df::CENTER_CENTER);
 		
 		registerInterest(df::STEP_EVENT);
+
+		df::Sound *p_sound = df::ResourceManager::getInstance().getSound("game over");
+		p_sound->play();
 	}
 
 }
@@ -66,8 +72,12 @@ GameOver::~GameOver()
 		if (p_o->getType() == "Saucer" || p_o->getType() == "ViewObject")
 			world_manager.markForDelete(p_o);
 		if (p_o->getType() == "GameStart")
+		{
 			p_o->setActive(true);
+			dynamic_cast <GameStart *> (p_o)->playMusic(); // Resume start music.
+		}
 	}
+	
 }
 
 void GameOver::draw()

@@ -29,6 +29,9 @@ GameStart::GameStart()
 		setLocation(df::CENTER_CENTER);
 
 		registerInterest(df::KEYBOARD_EVENT);
+
+		p_music = df::ResourceManager::getInstance().getMusic("start music");
+		playMusic();
 	}
 
 }
@@ -77,9 +80,15 @@ void GameStart::start()
 	p_vo->setColor(df::YELLOW);
 
 	setActive(false); //disable for now
+	p_music->pause();
 }
 
 void GameStart::draw()
 {
 	df::Object::draw();
+}
+
+void GameStart::playMusic()
+{
+	p_music->play();
 }

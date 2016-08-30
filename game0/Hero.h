@@ -10,7 +10,7 @@ private:
 	void kbd(const df::EventKeyboard *p_keyboard_event);
 	void mouse(const df::EventMouse *p_mouse_event);
 	void move(int dy);
-	void fire(df::Vector target);
+	void fire(df::Vector target);	
 	void nuke();
 	void step();
 
