@@ -1,16 +1,9 @@
-﻿  Star.cpp
-f:\code\saucer-shoot\gametutorial\star.cpp(37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  Saucer.cpp
-  Reticle.cpp
-  Points.cpp
+﻿  GameStatus.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Hero2.cpp
   Hero.cpp
   GameStart.cpp
-  GameOver.cpp
-  game.cpp
-  Explosion.cpp
-  EventNuke.cpp
-  Bullet.cpp
-  Generating Code...
      Creating library F:\Code\saucer-shoot\gameTutorial\vs-2015\Debug\saucer-shoot.lib and object F:\Code\saucer-shoot\gameTutorial\vs-2015\Debug\saucer-shoot.exp
 libdragonfly-win32-debug.lib(Box.obj) : warning LNK4099: PDB 'dragonfly.pdb' was not found with 'libdragonfly-win32-debug.lib(Box.obj)' or at 'F:\Code\saucer-shoot\gameTutorial\vs-2015\Debug\dragonfly.pdb'; linking object as if no debug info
 libdragonfly-win32-debug.lib(Circle.obj) : warning LNK4099: PDB 'dragonfly.pdb' was not found with 'libdragonfly-win32-debug.lib(Circle.obj)' or at 'F:\Code\saucer-shoot\gameTutorial\vs-2015\Debug\dragonfly.pdb'; linking object as if no debug info

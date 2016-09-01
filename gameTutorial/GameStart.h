@@ -10,7 +10,7 @@ class GameStart : public df::ViewObject
 {
 
 private:
-	void start();
+	void start(bool coop = false);
 	void kbd(const df::EventKeyboard *p_keyboard_event);
 
 	df::Music *p_music;

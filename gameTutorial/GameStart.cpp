@@ -3,8 +3,10 @@
 //Game includes
 #include "Saucer.h"
 #include "Hero.h"
+#include "Hero2.h"
 #include "Points.h"
 #include "GameStart.h"
+#include "GameStatus.h"
 
 //Engine includes
 #include "LogManager.h"
@@ -62,6 +64,9 @@ void GameStart::kbd(const df::EventKeyboard *p_keyboard_event)
 	case df::Keyboard::P: 			// play
 		start();
 		break;
+	case df::Keyboard::C:           //C for coop
+		start(true);
+		break;
 	case df::Keyboard::Q:			// quit
 		game_manager.setGameOver();
 		break;
@@ -84,13 +89,23 @@ int GameStart::eventHandler(const df::Event *p_e)
 	return 0;
 }
 
-void GameStart::start()
+void GameStart::start(bool coop)
 {
 	// Spawn some saucers to shoot.
 	for (int i = 0; i<16; i++)
 		new Saucer;
 
-	new Hero;
+	//new Hero;
+
+	if(coop)
+	{
+		GameStatus::init(new Hero, new Hero2);
+	}
+	else
+	{
+		GameStatus::init(new Hero);
+	}
+	
 
 	new Points;
 	df::ViewObject *p_vo = new df::ViewObject;

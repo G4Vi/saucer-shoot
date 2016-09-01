@@ -162,7 +162,9 @@
     <ClCompile Include="..\game.cpp" />
     <ClCompile Include="..\GameOver.cpp" />
     <ClCompile Include="..\GameStart.cpp" />
+    <ClCompile Include="..\GameStatus.cpp" />
     <ClCompile Include="..\Hero.cpp" />
+    <ClCompile Include="..\Hero2.cpp" />
     <ClCompile Include="..\Points.cpp" />
     <ClCompile Include="..\Reticle.cpp" />
     <ClCompile Include="..\Saucer.cpp" />
@@ -174,7 +176,9 @@
     <ClInclude Include="..\Explosion.h" />
     <ClInclude Include="..\GameOver.h" />
     <ClInclude Include="..\GameStart.h" />
+    <ClInclude Include="..\GameStatus.h" />
     <ClInclude Include="..\Hero.h" />
+    <ClInclude Include="..\Hero2.h" />
     <ClInclude Include="..\Points.h" />
     <ClInclude Include="..\Reticle.h" />
     <ClInclude Include="..\Saucer.h" />

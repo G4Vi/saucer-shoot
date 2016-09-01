@@ -6,6 +6,7 @@
 #include "Bullet.h"
 #include "GameOver.h"
 #include "Explosion.h"
+#include "GameStatus.h"
 
 //Engine includes
 #include "LogManager.h"
@@ -26,12 +27,12 @@ Hero::Hero()
     df::Sprite *p_temp_sprite;
     p_temp_sprite = resource_manager.getSprite("ship");
     if (!p_temp_sprite)
-	{
+    {
         log_manager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found",
             "ship");
     }
     else
-	{
+    {
         setSprite(p_temp_sprite);
         setSpriteSlowdown(3);  // 1/3 speed animation.
         setTransparency();	   // Transparent sprite.
@@ -65,7 +66,7 @@ Hero::Hero()
 int Hero::eventHandler(const df::Event *p_e)
 {
     if (p_e->getType() == df::KEYBOARD_EVENT)
-	{
+    {
         const df::EventKeyboard *p_keyboard_event =
             dynamic_cast <const df::EventKeyboard *> (p_e);
         kbd(p_keyboard_event);
@@ -77,7 +78,7 @@ int Hero::eventHandler(const df::Event *p_e)
         return 1;
     }
     else if (p_e->getType() == df::MOUSE_EVENT)
-	{
+    {
         const df::EventMouse *p_mouse_event =
             dynamic_cast <const df::EventMouse *> (p_e);
         mouse(p_mouse_event);
@@ -91,11 +92,11 @@ void Hero::kbd(const df::EventKeyboard *p_keyboard_event)
 {
 
     switch (p_keyboard_event->getKey())
-	{
+    {
 
     case df::Keyboard::Q:    // quit
         if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED)
-		{
+        {
             df::WorldManager &world_manager = df::WorldManager::getInstance();
             world_manager.markForDelete(this);
         }
@@ -143,24 +144,31 @@ void Hero::move(int dy)
 
 void Hero::fire(df::Vector target)
 {
+    //check if the limit has been exceeded
+    if (fire_countdown > 0)
+        return;
+    fire_countdown = fire_slowdown;
+
     // Fire Bullet towards target.
     Bullet *p = new Bullet(getPosition());
     p->setVelocity(df::Vector(p->getVelocity().getX(),
         ((float)(target.getY() - getPosition().getY())) /
         ((float)(target.getX() - getPosition().getX()))));
 
+    df::Vector gh = p->getVelocity();
+    int y = gh.getY();
     //sound
     df::Sound *p_sound = df::ResourceManager::getInstance().getSound("fire");  
-	if (!p_sound)
-	{
-		df::LogManager &log_manager = df::LogManager::getInstance();
-		log_manager.writeLog("Hero::fire(): Warning! Sound '%s' not found",
-			"fire");
-	}
-	else
-	{
-		p_sound->play();
-	}
+    if (!p_sound)
+    {
+        df::LogManager &log_manager = df::LogManager::getInstance();
+        log_manager.writeLog("Hero::fire(): Warning! Sound '%s' not found",
+            "fire");
+    }
+    else
+    {
+        p_sound->play();
+    }
 }
 
 void Hero::nuke()
@@ -177,16 +185,16 @@ void Hero::nuke()
     world_manager.onEvent(&ev);
 
     df::Sound *p_sound = df::ResourceManager::getInstance().getSound("nuke");
-	if (!p_sound)
-	{
-		df::LogManager &log_manager = df::LogManager::getInstance();
-		log_manager.writeLog("Hero::nuke(): Warning! Sound '%s' not found",
-			"nuke");
-	}
-	else
-	{
-		p_sound->play();
-	}
+    if (!p_sound)
+    {
+        df::LogManager &log_manager = df::LogManager::getInstance();
+        log_manager.writeLog("Hero::nuke(): Warning! Sound '%s' not found",
+            "nuke");
+    }
+    else
+    {
+        p_sound->play();
+    }
    
 }
 
@@ -207,8 +215,9 @@ void Hero::step()
 //hero died, gameover
 Hero::~Hero()
 {
-    GameOver *p_go = new GameOver;
-    
+   
+	GameStatus::player1dies();
+
     df::WorldManager::getInstance().markForDelete(p_reticle);
 
     for (int i = -8; i <= 8; i += 5) 
