@@ -6,12 +6,19 @@ Saucer Shoot game from Dragonfly tutorial with additions.
 
 Developed in Windows VS2015. Use the project in the vs-2015 directory.
 To build in VS, press F7 to build and F5 to run. dragonfly and
-SFML-2.4 must exist in the directory above gameTutorial. 
+SFML-2.4 must exist in the directory above gameTutorial. The VS
+version loads sprites and sounds from the directories inside of the
+vs-2015 directory.
 
-Code structure is almost the same as the tutorial, but all "Get" calls
-are compared to be vald before using the result. Game starts in game.cpp, after initialization starts a splash screen (main menu screen) from game start. If the game is started a Hero is generated in Hero.cpp. 
-The Hero is controlled in Hero.cpp by listening to keyboard events. If the Hero died, GameOver splash screen is 
-played before reverting back to GameStart.
+Code structure is simular to the tutorial with major changes to Hero.
+Due to expanding to coop (see GAME.txt). Input reading has moved 
+to SSManager. Nukes were moved too as they are usuable by anyone.
+In order to get rid of a lot of duplicate calls in Hero and Hero2,
+base functionality has been moved to HeroBase. with only Hero and Hero2
+having custom constructors, destructors, and fire functions.
+
+All "Get" calls are compared to be vald before using the result. Game starts in game.cpp, after initialization starts a splash screen (main menu screen) from gameStart and SSManager. In coop modes, GameOver is only set
+if both players died or quit is pressed.
 
 See GAME.txt for notes on how the project was expanded. 
 

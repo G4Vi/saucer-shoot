@@ -12,6 +12,6 @@ private:
 	void hit(const df::EventCollision *p_collision_event);
 
 public:
-	Bullet(df::Vector hero_pos);
+	Bullet(df::Vector hero_pos, char* spriteName = "bullet");
 	int eventHandler(const df::Event *p_e);
 };

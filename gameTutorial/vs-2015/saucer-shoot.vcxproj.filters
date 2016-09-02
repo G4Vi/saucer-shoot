@@ -51,7 +51,10 @@
     <ClCompile Include="..\Hero2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\GameStatus.cpp">
+    <ClCompile Include="..\SSManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HeroBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,7 +92,10 @@
     <ClInclude Include="..\Hero2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\GameStatus.h">
+    <ClInclude Include="..\SSManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HeroBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

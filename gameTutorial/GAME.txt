@@ -1,0 +1,46 @@
+SAUCER SHOOT
+By Gavin Hayes gahayes@wpi.edu
+IMGD3000 A16
+
+//Saucer Shoot Extension Information:
+
+Local coop mode added. Press 'c' to play coop
+instead of pressing 'p' at start. 
+
+Coop mode features the ability for two players
+to play on the same computer. 
+
+Player1 sports a blue ship with blue bullets and uses UPARROW and DOWNARROW to move
+and the mouse with reticle to shoot.
+Player2 sports a magenta ship with magenta bullets and 
+uses 'W' and 'S' to move and 'D' to shoot (player2 only shoots in a straight line). 
+
+Given that this a two dimensional solar system, ships cannot cross each other,
+though once one of the players have died, the other can move freely. 
+
+Additional coop features:
+-twice as many starting saucers (32)
+-twice as many nukes, conviently available on the spacebar ready for either player to use.
+
+//Code implemented
+SSManager now exists in order to keep track of game state and to dispatch input.
+SSManager is variation of the singleton pattern, but operates a little differently.
+It expects have it's static init function called before getInstance is called
+as the Hero pointers must be set before getInstance could get anything useful.
+In order to avoid memory leaks when using init wrong, it does not init if the
+static instance pointer is not false. Additionally the getInstance returns NULL
+if it has not been init. 
+
+Game states kept track of:
+Hero pointers, and nukes.
+
+All keyboard and mouse is dispatched in SSManager to avoid handing the same
+key in multiple places, so the Hero classes were changed to be "friends"
+of SSManager in order to allow it to call their private methods. 
+
+HeroBase created in order to cover the functions all the same in both Hero
+classes Hero and Hero2. This includes moving, events, and some initilization and cleanup. 
+
+Hero includes the reticle and firing to the mouse point. overrides Hero::fire(df::Vector target).
+Hero2, just changes the sprite to the magenta ship and fire straight out the the ship. Overrides
+Hero2::fire().

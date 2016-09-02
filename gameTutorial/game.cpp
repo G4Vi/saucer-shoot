@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	df::LogManager &log_manager = df::LogManager::getInstance();
 
 	// Set flush of logfile during development (when done, make false).
-	log_manager.setFlush(true);
+	log_manager.setFlush(false);
 
 	// Start up game manager.
 	df::GameManager &game_manager = df::GameManager::getInstance();
@@ -77,8 +77,16 @@ void loadResources(void)
 	//hero sprite
 	resource_manager.loadSprite("sprites/ship-spr.txt", "ship");
 
+	//hero2 sprite so it can have a different color
+	resource_manager.loadSprite("sprites/ship-spr.txt", "ship2");
+	resource_manager.getSprite("ship2")->setColor(df::Color::MAGENTA);
+
 	//bullet sprite
 	resource_manager.loadSprite("sprites/bullet-spr.txt", "bullet");
+
+	//give hero2 the same color bullet as his ship	
+	resource_manager.loadSprite("sprites/bullet-spr.txt", "bullet2");
+	resource_manager.getSprite("bullet2")->setColor(df::Color::MAGENTA);
 
 	//explosion sprite
 	resource_manager.loadSprite("sprites/explosion-spr.txt", "explosion");

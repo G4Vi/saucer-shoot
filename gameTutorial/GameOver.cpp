@@ -3,7 +3,7 @@
 //Game includes
 #include "GameOver.h"
 #include "GameStart.h"
-
+#include "SSManager.h"
 //Engine includes
 #include "ResourceManager.h"
 #include "LogManager.h"
@@ -46,6 +46,11 @@ GameOver::GameOver()
 	{
 		p_sound->play();
 	}
+
+	//get rid of SSManager
+	df::WorldManager &world_manager = df::WorldManager::getInstance();	
+    world_manager.markForDelete((Object*)SSManager::getInstance());
+
 
 }
 

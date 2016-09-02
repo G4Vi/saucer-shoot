@@ -6,7 +6,7 @@
 #include "Hero2.h"
 #include "Points.h"
 #include "GameStart.h"
-#include "GameStatus.h"
+#include "SSManager.h"
 
 //Engine includes
 #include "LogManager.h"
@@ -91,28 +91,25 @@ int GameStart::eventHandler(const df::Event *p_e)
 
 void GameStart::start(bool coop)
 {
-	// Spawn some saucers to shoot.
-	for (int i = 0; i<16; i++)
-		new Saucer;
+	
 
 	//new Hero;
 
 	if(coop)
 	{
-		GameStatus::init(new Hero, new Hero2);
+		// Spawn some saucers to shoot.
+		for (int i = 0; i<32; i++)
+			new Saucer;
+		SSManager::init(new Hero, new Hero2);
 	}
 	else
 	{
-		GameStatus::init(new Hero);
-	}
-	
+		for (int i = 0; i<16; i++)
+			new Saucer;
+		SSManager::init(new Hero);
+	}	
 
 	new Points;
-	df::ViewObject *p_vo = new df::ViewObject;
-	p_vo->setLocation(df::TOP_LEFT);
-	p_vo->setViewString("Nukes");
-	p_vo->setValue(1);
-	p_vo->setColor(df::YELLOW);
 
 	setActive(false); //disable for now
 	p_music->pause();

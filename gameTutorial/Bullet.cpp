@@ -9,17 +9,17 @@
 #include "ResourceManager.h"
 #include "EventOut.h"
 
-Bullet::Bullet(df::Vector hero_pos)
+Bullet::Bullet(df::Vector hero_pos, char* sprite_name)
 {	
 	df::LogManager &log_manager = df::LogManager::getInstance();
 	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();	
 
 	//assign bullet sprite
-	df::Sprite *p_temp_sprite = resource_manager.getSprite("bullet");
+	df::Sprite *p_temp_sprite = resource_manager.getSprite(sprite_name);
 	if (!p_temp_sprite)
 	{
 		log_manager.writeLog("Bullet::Bullet(): Warning! Sprite '%s' not found",
-			"bullet");
+			sprite_name);
 	}
 	else
 	{
